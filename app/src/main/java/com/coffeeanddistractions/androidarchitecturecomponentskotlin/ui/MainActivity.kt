@@ -1,14 +1,24 @@
 package com.coffeeanddistractions.androidarchitecturecomponentskotlin.ui
 
+import android.arch.lifecycle.Observer
+import android.arch.lifecycle.ViewModelProviders
+import android.arch.paging.PagedList
 import android.os.Bundle
 import android.support.design.widget.Snackbar
 import android.support.v7.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
 import com.coffeeanddistractions.androidarchitecturecomponentskotlin.R
+import com.coffeeanddistractions.androidarchitecturecomponentskotlin.application.ApplicationClass
+import com.coffeeanddistractions.androidarchitecturecomponentskotlin.database.UserEntity
+import com.coffeeanddistractions.androidarchitecturecomponentskotlin.repository.UserRepository
+import com.coffeeanddistractions.androidarchitecturecomponentskotlin.services.ServiceContractImplementation
+import com.coffeeanddistractions.androidarchitecturecomponentskotlin.ui.viewModels.UserViewModel
 
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.content_main.*
+import kotlinx.coroutines.experimental.CommonPool
+import kotlinx.coroutines.experimental.launch
 
 class MainActivity : AppCompatActivity() {
 
@@ -17,12 +27,22 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
 
-        hello_text_view.text = "something"
+        val userViewModel = ViewModelProviders.of(this).get(UserViewModel::class.java)
+        val appClass = application as ApplicationClass
 
-        fab.setOnClickListener { view ->
-            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                    .setAction("Action", null).show()
+        fab.setOnClickListener { _ ->
+            launch(CommonPool) {
+                val newUser  = UserEntity()
+                newUser.email = "arslan@email.com"
+                newUser.name = "Arslan tech387"
+
+                appClass.getAppDatabase().userDao().insertUser(newUser)
+            }
         }
+
+        userViewModel.getAllUsers().observe(this, Observer<Array<UserEntity>> {
+            hello_text_view.text = "number of users ${it?.size}"
+        })
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {

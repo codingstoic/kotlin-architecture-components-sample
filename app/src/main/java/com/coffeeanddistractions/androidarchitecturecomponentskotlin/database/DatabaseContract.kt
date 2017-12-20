@@ -9,7 +9,7 @@ import android.content.Context
  * Created by Abdu on 12/20/2017.
  */
 
-@Database(version = 1, entities = arrayOf(UserEntity::class))
+@Database(version = 2, entities = arrayOf(UserEntity::class), exportSchema = false)
 abstract class ApplicationDatabase : RoomDatabase() {
     abstract public fun userDao(): UserDaoContract
 
@@ -23,6 +23,7 @@ abstract class ApplicationDatabase : RoomDatabase() {
                         fallbackToDestructiveMigration().
                         build()
             }
+
             return db as ApplicationDatabase
         }
     }

@@ -21,16 +21,7 @@ import java.util.concurrent.TimeUnit
 
 class UserRepository(val serviceContract: ServiceContract,
                      val userDaoContract: UserDaoContract){
-    fun getUsers(): LiveData<PagedList<UserEntity>>{
-//        launch(UI) {
-//            val allUsers = run(CommonPool) {
-//                delay(2, TimeUnit.SECONDS)
-//                arrayOf(User(1, "Abdu", "abdu@email.com"))
-//            }
-//
-//            userDaoContract.insertUser()
-//        }
-
-        return LivePagedListBuilder(userDaoContract.queryAllUsers(), 10).build()
+    fun getUsers(): LiveData<Array<UserEntity>>{
+        return userDaoContract.queryAllUsers()
     }
 }

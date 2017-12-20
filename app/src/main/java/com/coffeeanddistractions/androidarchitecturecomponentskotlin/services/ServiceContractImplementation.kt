@@ -8,6 +8,10 @@ import com.coffeeanddistractions.androidarchitecturecomponentskotlin.models.User
  */
 
 class ServiceContractImplementation : ServiceContract {
+    suspend override fun getAllUsers(): Array<User> {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
     suspend override fun getUser(userId: Long): User {
         // use retrofit for this
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.

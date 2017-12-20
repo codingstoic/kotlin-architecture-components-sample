@@ -1,6 +1,6 @@
 package com.coffeeanddistractions.androidarchitecturecomponentskotlin.database
 
-import android.arch.paging.DataSource
+import android.arch.lifecycle.LiveData
 import android.arch.persistence.room.OnConflictStrategy
 import android.arch.persistence.room.Dao
 import android.arch.persistence.room.Insert
@@ -12,10 +12,11 @@ import android.arch.persistence.room.Query
 
 @Dao
 interface UserDaoContract {
-    @Insert(onConflict = OnConflictStrategy.FAIL)
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertUser(user: UserEntity)
 
-    @Query("select * from user")
-    fun queryAllUsers() : DataSource.Factory<Int, UserEntity>
+    @Query("select * from users")
+//    fun queryAllUsers() : DataSource.Factory<Int, UserEntity>
+    fun queryAllUsers() : LiveData<Array<UserEntity>>
 }
 
