@@ -16,11 +16,12 @@ class ServiceClientImplementation : ServiceClientDefinition {
     }
 
     suspend override fun getUser(userId: Long): User {
-        // use retrofit for this
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        val user = User(name = "abdu", email = "adil@email.com", id = 1 )
+        delay(3, TimeUnit.SECONDS)
+        return user
     }
 
     suspend override fun updateUser(userId: Long, user: User) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        // todo after retrofit
     }
 }

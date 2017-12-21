@@ -9,7 +9,7 @@ import android.content.Context
  * Created by Abdu on 12/20/2017.
  */
 
-@Database(version = 2, entities = arrayOf(UserEntity::class), exportSchema = false)
+@Database(version = 3, entities = arrayOf(UserEntity::class), exportSchema = false)
 abstract class ApplicationDatabase : RoomDatabase() {
     abstract public fun userDao(): UserDaoContract
 
