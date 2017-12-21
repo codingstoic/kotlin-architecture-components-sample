@@ -2,13 +2,17 @@ package com.coffeeanddistractions.androidarchitecturecomponentskotlin.ui
 
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
+import android.arch.paging.PagedList
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import android.support.v7.widget.LinearLayoutManager
+import android.support.v7.widget.RecyclerView
 import android.view.Menu
 import android.view.MenuItem
 import com.coffeeanddistractions.androidarchitecturecomponentskotlin.R
 import com.coffeeanddistractions.androidarchitecturecomponentskotlin.application.ApplicationClass
 import com.coffeeanddistractions.androidarchitecturecomponentskotlin.database.UserEntity
+import com.coffeeanddistractions.androidarchitecturecomponentskotlin.ui.lists.UserAdapter
 import com.coffeeanddistractions.androidarchitecturecomponentskotlin.ui.viewModels.UserViewModel
 
 import kotlinx.android.synthetic.main.activity_main.*
@@ -24,21 +28,26 @@ class MainActivity : AppCompatActivity() {
         setSupportActionBar(toolbar)
 
         val userViewModel = ViewModelProviders.of(this).get(UserViewModel::class.java)
+        val adapter = UserAdapter()
+        val recyclerView = findViewById<RecyclerView>(R.id.activity_main_users_recycler_view)
+        recyclerView.adapter = adapter
+        recyclerView.layoutManager = LinearLayoutManager(this)
+
+        userViewModel.getAllUsers().observe(this, Observer<PagedList<UserEntity>> { list ->
+            adapter.setList(list)
+        })
+
         val appClass = application as ApplicationClass
 
         fab.setOnClickListener { _ ->
             launch(CommonPool) {
                 val newUser  = UserEntity()
                 newUser.email = "arslan@email.com"
-                newUser.name = "Arslan tech387"
+                newUser.name = "Arslan"
 
                 appClass.getAppDatabase().userDao().insertUser(newUser)
             }
         }
-
-        userViewModel.getAllUsers().observe(this, Observer<Array<UserEntity>> {
-            hello_text_view.text = "number of users ${it?.size}"
-        })
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {

@@ -1,6 +1,8 @@
 package com.coffeeanddistractions.androidarchitecturecomponentskotlin.repository
 
 import android.arch.lifecycle.LiveData
+import android.arch.paging.LivePagedListBuilder
+import android.arch.paging.PagedList
 import com.coffeeanddistractions.androidarchitecturecomponentskotlin.database.UserDaoContract
 import com.coffeeanddistractions.androidarchitecturecomponentskotlin.database.UserEntity
 import com.coffeeanddistractions.androidarchitecturecomponentskotlin.services.ServiceClientDefinition
@@ -12,7 +14,8 @@ import kotlinx.coroutines.experimental.launch
 
 class UserRepository(val serviceClientImplementation: ServiceClientDefinition,
                      val userDaoContract: UserDaoContract) {
-    fun getUsers(): LiveData<Array<UserEntity>> {
+    fun getUsers(): LiveData<PagedList<UserEntity>> {
+
         launch {
             val users = serviceClientImplementation.getAllUsers()
             val userEntities: MutableList<UserEntity> = mutableListOf()
@@ -28,6 +31,6 @@ class UserRepository(val serviceClientImplementation: ServiceClientDefinition,
             userDaoContract.insertUsers(users = userEntities.toTypedArray())
         }
 
-        return userDaoContract.queryAllUsers()
+        return LivePagedListBuilder(userDaoContract.queryAllUsers(),20).build()
     }
 }
