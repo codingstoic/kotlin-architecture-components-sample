@@ -15,6 +15,9 @@ interface UserDaoContract {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertUser(user: UserEntity)
 
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun insertUsers(users: Array<UserEntity>)
+
     @Query("select * from users")
 //    fun queryAllUsers() : DataSource.Factory<Int, UserEntity>
     fun queryAllUsers() : LiveData<Array<UserEntity>>

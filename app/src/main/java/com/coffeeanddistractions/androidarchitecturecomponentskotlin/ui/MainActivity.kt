@@ -2,17 +2,13 @@ package com.coffeeanddistractions.androidarchitecturecomponentskotlin.ui
 
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
-import android.arch.paging.PagedList
 import android.os.Bundle
-import android.support.design.widget.Snackbar
 import android.support.v7.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
 import com.coffeeanddistractions.androidarchitecturecomponentskotlin.R
 import com.coffeeanddistractions.androidarchitecturecomponentskotlin.application.ApplicationClass
 import com.coffeeanddistractions.androidarchitecturecomponentskotlin.database.UserEntity
-import com.coffeeanddistractions.androidarchitecturecomponentskotlin.repository.UserRepository
-import com.coffeeanddistractions.androidarchitecturecomponentskotlin.services.ServiceContractImplementation
 import com.coffeeanddistractions.androidarchitecturecomponentskotlin.ui.viewModels.UserViewModel
 
 import kotlinx.android.synthetic.main.activity_main.*

@@ -3,27 +3,27 @@ package com.coffeeanddistractions.androidarchitecturecomponentskotlin.applicatio
 import android.app.Application
 import com.coffeeanddistractions.androidarchitecturecomponentskotlin.database.ApplicationDatabase
 import com.coffeeanddistractions.androidarchitecturecomponentskotlin.repository.UserRepository
-import com.coffeeanddistractions.androidarchitecturecomponentskotlin.services.ServiceContract
-import com.coffeeanddistractions.androidarchitecturecomponentskotlin.services.ServiceContractImplementation
+import com.coffeeanddistractions.androidarchitecturecomponentskotlin.services.ServiceClientDefinition
+import com.coffeeanddistractions.androidarchitecturecomponentskotlin.services.ServiceClientImplementation
 
 /*
  * Created by Abdu on 12/20/2017.
  */
 
 class ApplicationClass : Application() {
-    lateinit private var serviceImplementationInstance : ServiceContract
+    lateinit private var serviceClientImplementationInstance: ServiceClientDefinition
     lateinit private var userRepositoryInstance: UserRepository
     lateinit private var applicationDatabase : ApplicationDatabase
 
     override fun onCreate() {
         super.onCreate()
 
-        serviceImplementationInstance = ServiceContractImplementation()
+        serviceClientImplementationInstance = ServiceClientImplementation()
         applicationDatabase = ApplicationDatabase.getDBFromContext(this)
-        userRepositoryInstance = UserRepository(serviceImplementationInstance, applicationDatabase.userDao())
+        userRepositoryInstance = UserRepository(serviceClientImplementationInstance, applicationDatabase.userDao())
     }
 
-    fun getServiceImplementation(): ServiceContract = serviceImplementationInstance
+    fun getServiceImplementation(): ServiceClientDefinition = serviceClientImplementationInstance
     fun getAppDatabase(): ApplicationDatabase = applicationDatabase
     fun getUserRepository(): UserRepository = userRepositoryInstance
 }
