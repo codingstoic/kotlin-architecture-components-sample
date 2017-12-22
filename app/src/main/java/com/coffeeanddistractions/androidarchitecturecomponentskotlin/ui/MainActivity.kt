@@ -11,8 +11,11 @@ import android.view.Menu
 import android.view.MenuItem
 import com.coffeeanddistractions.androidarchitecturecomponentskotlin.R
 import com.coffeeanddistractions.androidarchitecturecomponentskotlin.application.ApplicationClass
+import com.coffeeanddistractions.androidarchitecturecomponentskotlin.database.PostEntity
 import com.coffeeanddistractions.androidarchitecturecomponentskotlin.database.UserEntity
+import com.coffeeanddistractions.androidarchitecturecomponentskotlin.ui.lists.PostAdapter
 import com.coffeeanddistractions.androidarchitecturecomponentskotlin.ui.lists.UserAdapter
+import com.coffeeanddistractions.androidarchitecturecomponentskotlin.ui.viewModels.PostsViewModel
 import com.coffeeanddistractions.androidarchitecturecomponentskotlin.ui.viewModels.UserViewModel
 
 import kotlinx.android.synthetic.main.activity_main.*
@@ -27,13 +30,13 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
 
-        val userViewModel = ViewModelProviders.of(this).get(UserViewModel::class.java)
-        val adapter = UserAdapter()
+        val postsViewModel = ViewModelProviders.of(this).get(PostsViewModel::class.java)
+        val adapter = PostAdapter()
         val recyclerView = findViewById<RecyclerView>(R.id.activity_main_users_recycler_view)
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(this)
 
-        userViewModel.getAllUsers().observe(this, Observer<PagedList<UserEntity>> { list ->
+        postsViewModel.getAllPosts().observe(this, Observer<PagedList<PostEntity>> { list ->
             adapter.setList(list)
         })
 
@@ -41,11 +44,12 @@ class MainActivity : AppCompatActivity() {
 
         fab.setOnClickListener { _ ->
             launch(CommonPool) {
-                val newUser  = UserEntity()
-                newUser.email = "arslan@email.com"
-                newUser.name = "Arslan"
-
-                appClass.getAppDatabase().userDao().insertUser(newUser)
+                val newPost  = PostEntity()
+                newPost.title = "New post title 1"
+                newPost.description = "This is a description for post named new post title 1"
+                newPost.userId = 1
+                newPost.commentCount = 0
+                appClass.getAppDatabase().postDao().createPost(newPost)
             }
         }
     }

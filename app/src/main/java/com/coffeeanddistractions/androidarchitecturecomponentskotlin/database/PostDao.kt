@@ -1,6 +1,7 @@
 package com.coffeeanddistractions.androidarchitecturecomponentskotlin.database
 
 import android.arch.lifecycle.LiveData
+import android.arch.paging.DataSource
 import android.arch.persistence.room.Dao
 import android.arch.persistence.room.Insert
 import android.arch.persistence.room.OnConflictStrategy
@@ -19,5 +20,5 @@ interface PostDaoContract {
     fun insertPosts(posts: Array<PostEntity>)
 
     @Query("select * from posts")
-    fun queryAllPosts() : LiveData<Array<PostEntity>>
+    fun queryAllPosts() : DataSource.Factory<Int, PostEntity>
 }

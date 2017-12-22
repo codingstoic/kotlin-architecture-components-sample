@@ -9,9 +9,10 @@ import android.content.Context
  * Created by Abdu on 12/20/2017.
  */
 
-@Database(version = 3, entities = arrayOf(UserEntity::class), exportSchema = false)
+@Database(version = 5, entities = arrayOf(UserEntity::class, PostEntity::class), exportSchema = false)
 abstract class ApplicationDatabase : RoomDatabase() {
     abstract public fun userDao(): UserDaoContract
+    abstract public fun postDao(): PostDaoContract
 
     companion object {
         private var db: ApplicationDatabase? = null
