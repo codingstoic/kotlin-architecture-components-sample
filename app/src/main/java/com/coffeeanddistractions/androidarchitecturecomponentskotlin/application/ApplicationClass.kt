@@ -28,6 +28,7 @@ class ApplicationClass : Application() {
 
     fun getServiceImplementation(): ServiceClientDefinition = serviceClientImplementationInstance
     fun getAppDatabase(): ApplicationDatabase = applicationDatabase
+    // todo add interfaces for this so this can be replaced
     fun getUserRepository(): UserRepository = userRepositoryInstance
     fun getPostRepository(): PostRepository = postRepositoryInstance
 }

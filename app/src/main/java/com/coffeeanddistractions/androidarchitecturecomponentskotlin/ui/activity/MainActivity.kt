@@ -11,11 +11,22 @@ import android.support.v7.widget.RecyclerView
 import com.coffeeanddistractions.androidarchitecturecomponentskotlin.R
 import com.coffeeanddistractions.androidarchitecturecomponentskotlin.database.PostEntity
 import com.coffeeanddistractions.androidarchitecturecomponentskotlin.ui.lists.PostAdapter
+import com.coffeeanddistractions.androidarchitecturecomponentskotlin.ui.lists.PostsListOnItemClickListener
 import com.coffeeanddistractions.androidarchitecturecomponentskotlin.ui.viewModels.PostsViewModel
 
 import kotlinx.android.synthetic.main.activity_main.*
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), PostsListOnItemClickListener {
+    override fun itemSelected(position: Int, item: PostEntity?) {
+        if (item != null) {
+            val viewSingleItemIntent = Intent(this, ViewSinglePostActivity::class.java)
+            viewSingleItemIntent.putExtra("id", item.id)
+            println("item title = ${item.title} id = ${item.id}")
+            startActivity(viewSingleItemIntent)
+        } else {
+            // todo display error
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -23,7 +34,7 @@ class MainActivity : AppCompatActivity() {
         setSupportActionBar(toolbar)
 
         val postsViewModel = ViewModelProviders.of(this).get(PostsViewModel::class.java)
-        val adapter = PostAdapter()
+        val adapter = PostAdapter(onItemClickListener = this)
         val recyclerView = findViewById<RecyclerView>(R.id.activity_main_users_recycler_view)
 
         recyclerView.adapter = adapter
@@ -39,3 +50,4 @@ class MainActivity : AppCompatActivity() {
         }
     }
 }
+
