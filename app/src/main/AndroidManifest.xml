@@ -21,7 +21,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".ui.activity.CreatePostActivity" />
-        <activity android:name=".ui.singlePost.ViewSinglePostActivity"></activity>
+        <activity android:name=".ui.singlePost.SinglePostActivity"></activity>
     </application>
 
 </manifest>

@@ -29,16 +29,16 @@ class UserAdapter : PagedListAdapter<UserEntity, UserViewHolder>(diffCallback) {
     override fun onBindViewHolder(holder: UserViewHolder?, position: Int) {
         val user = getItem(position)
         if (user != null) {
-            val userNameText = holder?.view?.findViewById<TextView>(R.id.user_list_row_name)
+            val userNameText = holder?.view?.findViewById<TextView>(R.id.post_list_row_name)
             userNameText?.text = user.name
         } else {
-            holder?.view?.findViewById<TextView>(R.id.user_list_row_name)?.text = ""
+            holder?.view?.findViewById<TextView>(R.id.post_list_row_name)?.text = ""
         }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): UserViewHolder {
         val view = LayoutInflater.from(parent?.context)
-                .inflate(R.layout.user_list_row, parent, false) as View
+                .inflate(R.layout.post_list_row, parent, false) as View
         return UserViewHolder(view)
     }
 

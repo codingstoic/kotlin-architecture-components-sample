@@ -18,9 +18,9 @@ class ServiceClientImplementation : ServiceClientDefinition {
         delay(time = 2, unit = TimeUnit.SECONDS)
 
         val comments = mutableListOf<Comment>()
-        IntRange(1, 10).forEach {
+        IntRange(100, 110).forEach {
             comments.add(Comment(
-                    id = it.toLong(),
+                    id = postId + it.toLong(),
                     body = "Default body ${randomGenerator.nextInt(100)}",
                     postId = postId,
                     userId = 1))

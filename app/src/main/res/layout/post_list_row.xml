@@ -9,11 +9,11 @@
     >
 
     <TextView
-        android:id="@+id/user_list_row_name"
+        android:id="@+id/post_list_row_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:text="TextView"
+        android:text="@string/defaultListRowText"
         android:textSize="60sp"
         />
 

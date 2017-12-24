@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.coffeeanddistractions.androidarchitecturecomponentskotlin.R
 import com.coffeeanddistractions.androidarchitecturecomponentskotlin.database.CommentEntity
+import kotlinx.android.synthetic.main.comment_list_row.view.*
 
 /*
  * Created by Abdu on 12/24/2017.
@@ -27,18 +28,19 @@ class CommentAdapter : PagedListAdapter<CommentEntity, CommentViewHolder>(diffCa
     override fun onBindViewHolder(holder: CommentViewHolder?, position: Int) {
         val commentEntity = getItem(position)
         if (commentEntity != null && holder != null) {
-            holder.rootView.tag = commentEntity.body
+            holder.commentBodyTextView.text = commentEntity.body
         }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): CommentViewHolder {
         val view = LayoutInflater.from(parent?.context)
-                .inflate(R.layout.user_list_row, parent, false) as View
+                .inflate(R.layout.comment_list_row, parent, false) as View
         return CommentViewHolder(view)
     }
 }
 
 class CommentViewHolder(view: View) : RecyclerView.ViewHolder(view) {
     val rootView = view
+    val commentBodyTextView = view.comment_list_comment_body
 }
 

@@ -12,7 +12,7 @@ import com.coffeeanddistractions.androidarchitecturecomponentskotlin.database.Po
 import com.coffeeanddistractions.androidarchitecturecomponentskotlin.models.POST_ENTITY_ID_SERIALIZE_KEY
 import kotlinx.android.synthetic.main.activity_view_single_post.*
 
-class ViewSinglePostActivity : AppCompatActivity() {
+class SinglePostActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_view_single_post)

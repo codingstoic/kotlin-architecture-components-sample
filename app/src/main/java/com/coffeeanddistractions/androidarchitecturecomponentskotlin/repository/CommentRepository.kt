@@ -21,12 +21,12 @@ class CommentRepository(val serviceClientImplementation: ServiceClientDefinition
             val commentEntities: MutableList<CommentEntity> = mutableListOf()
 
             comments.forEach {
-                val postEntity = CommentEntity()
-                postEntity.id = it.id
-                postEntity.body = it.body
-                postEntity.userId = it.userId
-                postEntity.postId = it.postId
-                commentEntities.add(postEntity)
+                val commentEntity = CommentEntity()
+                commentEntity.id = it.id
+                commentEntity.body = it.body
+                commentEntity.userId = it.userId
+                commentEntity.postId = id
+                commentEntities.add(commentEntity)
             }
 
             commentDaoContract.insertComments(comments = commentEntities.toTypedArray())

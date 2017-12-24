@@ -13,7 +13,7 @@ import com.coffeeanddistractions.androidarchitecturecomponentskotlin.database.Po
 import com.coffeeanddistractions.androidarchitecturecomponentskotlin.models.POST_ENTITY_ID_SERIALIZE_KEY
 import com.coffeeanddistractions.androidarchitecturecomponentskotlin.ui.activity.CreatePostActivity
 import com.coffeeanddistractions.androidarchitecturecomponentskotlin.ui.interfaces.GenericListOnItemClickListener
-import com.coffeeanddistractions.androidarchitecturecomponentskotlin.ui.singlePost.ViewSinglePostActivity
+import com.coffeeanddistractions.androidarchitecturecomponentskotlin.ui.singlePost.SinglePostActivity
 
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.content_main.*
@@ -43,7 +43,7 @@ class MainActivity : AppCompatActivity(), GenericListOnItemClickListener<PostEnt
 
     override fun itemSelected(position: Int, item: PostEntity?) {
         if (item != null) {
-            val viewSingleItemIntent = Intent(this, ViewSinglePostActivity::class.java)
+            val viewSingleItemIntent = Intent(this, SinglePostActivity::class.java)
             viewSingleItemIntent.putExtra(POST_ENTITY_ID_SERIALIZE_KEY, item.id)
             startActivity(viewSingleItemIntent)
         } else {
