@@ -12,7 +12,7 @@ import com.coffeeanddistractions.androidarchitecturecomponentskotlin.database.Us
  */
 
 class UserViewModel(applicationClass: Application) : AndroidViewModel(applicationClass) {
-    val userRepository = (applicationClass as ApplicationClass).getUserRepository()
-    var users: LiveData<PagedList<UserEntity>> = userRepository.getUsers()
-    fun getAllUsers(): LiveData<PagedList<UserEntity>> = users
+//    val userRepository = (applicationClass as ApplicationClass).getUserRepository()
+//    var users: LiveData<PagedList<UserEntity>> = userRepository.getUsers()
+//    fun getAllUsers(): LiveData<PagedList<UserEntity>> = users
 }

@@ -13,8 +13,8 @@ import kotlinx.coroutines.experimental.launch
  */
 
 class PostRepository(val serviceClientImplementation: ServiceClientDefinition,
-                     val postDaoContract: PostDaoContract){
-    fun getPosts(): LiveData<PagedList<PostEntity>> {
+                     val postDaoContract: PostDaoContract): PostRepositoryContract{
+    override fun getPosts(): LiveData<PagedList<PostEntity>> {
         launch {
             val posts = serviceClientImplementation.getAllPosts()
             val postEntities: MutableList<PostEntity> = mutableListOf()
@@ -34,5 +34,5 @@ class PostRepository(val serviceClientImplementation: ServiceClientDefinition,
         return LivePagedListBuilder(postDaoContract.queryAllPosts(), 20).build()
     }
 
-    fun getPostById(id: Long): LiveData<PostEntity> = postDaoContract.getPost(id)
+    override fun getPostById(id: Long): LiveData<PostEntity> = postDaoContract.getPost(id)
 }

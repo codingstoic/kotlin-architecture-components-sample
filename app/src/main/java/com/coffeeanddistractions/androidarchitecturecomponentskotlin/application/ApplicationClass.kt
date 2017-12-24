@@ -1,38 +1,30 @@
 package com.coffeeanddistractions.androidarchitecturecomponentskotlin.application
 
 import android.app.Application
-import com.coffeeanddistractions.androidarchitecturecomponentskotlin.database.ApplicationDatabase
-import com.coffeeanddistractions.androidarchitecturecomponentskotlin.repository.CommentRepository
-import com.coffeeanddistractions.androidarchitecturecomponentskotlin.repository.PostRepository
-import com.coffeeanddistractions.androidarchitecturecomponentskotlin.repository.UserRepository
-import com.coffeeanddistractions.androidarchitecturecomponentskotlin.services.ServiceClientDefinition
-import com.coffeeanddistractions.androidarchitecturecomponentskotlin.services.ServiceClientImplementation
+import com.coffeeanddistractions.androidarchitecturecomponentskotlin.DI.component.DaggerPostViewModelComponent
+import com.coffeeanddistractions.androidarchitecturecomponentskotlin.DI.component.DaggerSinglePostViewModelComponent
+import com.coffeeanddistractions.androidarchitecturecomponentskotlin.DI.modules.ContextModule
 
 /*
  * Created by Abdu on 12/20/2017.
  */
 
 class ApplicationClass : Application() {
-    lateinit private var serviceClientImplementationInstance: ServiceClientDefinition
-    lateinit private var userRepositoryInstance: UserRepository
-    lateinit private var postRepositoryInstance: PostRepository
-    lateinit private var commentRepositoryInstance: CommentRepository
-    lateinit private var applicationDatabase : ApplicationDatabase
+    val postViewModelComponent = DaggerPostViewModelComponent.
+            builder().
+            contextModule(ContextModule(this)).
+            build()
 
+    val singlePostViewModelComponent = DaggerSinglePostViewModelComponent.
+            builder().
+            contextModule(ContextModule(this)).
+            build()
+
+    // todo add dagger for DI
+    // todo biding util on view single post
+    // todo add retrofit
+    // todo add interfaces for this so this can be replaced
     override fun onCreate() {
         super.onCreate()
-
-        serviceClientImplementationInstance = ServiceClientImplementation()
-        applicationDatabase = ApplicationDatabase.getDBFromContext(this)
-        userRepositoryInstance = UserRepository(serviceClientImplementationInstance, applicationDatabase.userDao())
-        postRepositoryInstance = PostRepository(serviceClientImplementationInstance, applicationDatabase.postDao())
-        commentRepositoryInstance = CommentRepository(serviceClientImplementationInstance, applicationDatabase.commentDao())
     }
-
-    fun getServiceImplementation(): ServiceClientDefinition = serviceClientImplementationInstance
-    fun getAppDatabase(): ApplicationDatabase = applicationDatabase
-    // todo add interfaces for this so this can be replaced
-    fun getUserRepository(): UserRepository = userRepositoryInstance
-    fun getPostRepository(): PostRepository = postRepositoryInstance
-    fun getCommentRepository(): CommentRepository = commentRepositoryInstance
 }

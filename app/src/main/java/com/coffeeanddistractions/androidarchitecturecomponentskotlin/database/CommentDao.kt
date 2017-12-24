@@ -12,7 +12,7 @@ import android.arch.persistence.room.Query
 
 @Dao
 interface CommentDaoContract{
-    @Query("select * from comments where postId = :arg0")
+    @Query("select * from comments where postId = :id")
     fun getCommentsForPostId(id: Long) : DataSource.Factory<Int, CommentEntity>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)

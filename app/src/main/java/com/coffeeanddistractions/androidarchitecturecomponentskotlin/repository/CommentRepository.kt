@@ -13,9 +13,9 @@ import kotlinx.coroutines.experimental.launch
  */
 
 class CommentRepository(val serviceClientImplementation: ServiceClientDefinition,
-                     val commentDaoContract: CommentDaoContract){
+                     val commentDaoContract: CommentDaoContract): CommentRepositoryContract{
 
-    fun getCommentsForPostId(id: Long): LiveData<PagedList<CommentEntity>> {
+    override fun getCommentsForPostId(id: Long): LiveData<PagedList<CommentEntity>> {
         launch {
             val comments = serviceClientImplementation.getAllCommentsForPost(id)
             val commentEntities: MutableList<CommentEntity> = mutableListOf()

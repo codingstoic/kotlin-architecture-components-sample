@@ -7,14 +7,22 @@ import android.arch.paging.PagedList
 import com.coffeeanddistractions.androidarchitecturecomponentskotlin.application.ApplicationClass
 import com.coffeeanddistractions.androidarchitecturecomponentskotlin.database.CommentEntity
 import com.coffeeanddistractions.androidarchitecturecomponentskotlin.database.PostEntity
+import com.coffeeanddistractions.androidarchitecturecomponentskotlin.repository.CommentRepositoryContract
+import com.coffeeanddistractions.androidarchitecturecomponentskotlin.repository.PostRepositoryContract
+import javax.inject.Inject
 
 /*
  * Created by Abdu on 12/24/2017.
  */
 
 class SinglePostViewModel(applicationClass: Application) : AndroidViewModel(applicationClass) {
-    val postRepository = (applicationClass as ApplicationClass).getPostRepository()
-    val commentsRepository = (applicationClass as ApplicationClass).getCommentRepository()
+    @Inject lateinit var postRepository : PostRepositoryContract
+    @Inject lateinit var commentsRepository : CommentRepositoryContract
+
+    init {
+        (applicationClass as ApplicationClass).singlePostViewModelComponent.inject(this)
+    }
+
     private var post: LiveData<PostEntity>? = null
     private var comments: LiveData<PagedList<CommentEntity>>? = null
 
