@@ -9,5 +9,4 @@ import com.coffeeanddistractions.androidarchitecturecomponentskotlin.models.Post
 interface PostServiceDefinition{
     suspend fun getPost(postId: Long): Post
     suspend fun getAllPosts(): Array<Post>
-    suspend fun updatePost(postId: Long, post: Post)
 }

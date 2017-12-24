@@ -16,6 +16,22 @@ class CommentRepository(val serviceClientImplementation: ServiceClientDefinition
                      val commentDaoContract: CommentDaoContract){
 
     fun getCommentsForPostId(id: Long): LiveData<PagedList<CommentEntity>> {
+        launch {
+            val comments = serviceClientImplementation.getAllCommentsForPost(id)
+            val commentEntities: MutableList<CommentEntity> = mutableListOf()
+
+            comments.forEach {
+                val postEntity = CommentEntity()
+                postEntity.id = it.id
+                postEntity.body = it.body
+                postEntity.userId = it.userId
+                postEntity.postId = it.postId
+                commentEntities.add(postEntity)
+            }
+
+            commentDaoContract.insertComments(comments = commentEntities.toTypedArray())
+        }
+
         return LivePagedListBuilder(commentDaoContract.getCommentsForPostId(id), 20).build()
     }
 

@@ -32,5 +32,5 @@ data class CommentEntity (
     var id: Long = 0,
     var body: String = "Default Title",
     var userId: Long = 0,
-    var postId: Int = 0
+    var postId: Long = 0
 )
