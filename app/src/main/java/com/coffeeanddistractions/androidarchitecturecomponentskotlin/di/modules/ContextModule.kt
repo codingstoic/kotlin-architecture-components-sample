@@ -1,4 +1,4 @@
-package com.coffeeanddistractions.androidarchitecturecomponentskotlin.DI.modules
+package com.coffeeanddistractions.androidarchitecturecomponentskotlin.di.modules
 
 import android.content.Context
 import dagger.Module

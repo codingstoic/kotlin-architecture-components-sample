@@ -1,4 +1,4 @@
-package com.coffeeanddistractions.androidarchitecturecomponentskotlin.DI.modules
+package com.coffeeanddistractions.androidarchitecturecomponentskotlin.di.modules
 
 import com.coffeeanddistractions.androidarchitecturecomponentskotlin.services.ServiceClientDefinition
 import com.coffeeanddistractions.androidarchitecturecomponentskotlin.services.ServiceClientImplementation

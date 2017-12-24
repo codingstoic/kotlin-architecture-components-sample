@@ -1,6 +1,6 @@
-package com.coffeeanddistractions.androidarchitecturecomponentskotlin.DI.component
+package com.coffeeanddistractions.androidarchitecturecomponentskotlin.di.component
 
-import com.coffeeanddistractions.androidarchitecturecomponentskotlin.DI.modules.*
+import com.coffeeanddistractions.androidarchitecturecomponentskotlin.di.modules.*
 import com.coffeeanddistractions.androidarchitecturecomponentskotlin.ui.singlePost.SinglePostViewModel
 import dagger.Component
 import javax.inject.Singleton

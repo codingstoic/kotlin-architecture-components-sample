@@ -1,4 +1,4 @@
-package com.coffeeanddistractions.androidarchitecturecomponentskotlin.DI.modules
+package com.coffeeanddistractions.androidarchitecturecomponentskotlin.di.modules
 
 import com.coffeeanddistractions.androidarchitecturecomponentskotlin.database.PostDaoContract
 import com.coffeeanddistractions.androidarchitecturecomponentskotlin.repository.PostRepository
