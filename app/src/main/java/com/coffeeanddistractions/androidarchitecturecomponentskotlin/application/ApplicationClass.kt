@@ -19,12 +19,4 @@ class ApplicationClass : Application() {
             builder().
             contextModule(ContextModule(this)).
             build()
-
-    // todo add dagger for DI
-    // todo biding util on view single post
-    // todo add retrofit
-    // todo add interfaces for this so this can be replaced
-    override fun onCreate() {
-        super.onCreate()
-    }
 }

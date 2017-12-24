@@ -11,7 +11,6 @@ import android.widget.Toast
 import com.coffeeanddistractions.androidarchitecturecomponentskotlin.R
 import com.coffeeanddistractions.androidarchitecturecomponentskotlin.database.PostEntity
 import com.coffeeanddistractions.androidarchitecturecomponentskotlin.models.POST_ENTITY_ID_SERIALIZE_KEY
-import com.coffeeanddistractions.androidarchitecturecomponentskotlin.ui.activity.CreatePostActivity
 import com.coffeeanddistractions.androidarchitecturecomponentskotlin.ui.interfaces.GenericListOnItemClickListener
 import com.coffeeanddistractions.androidarchitecturecomponentskotlin.ui.singlePost.SinglePostActivity
 
@@ -34,11 +33,6 @@ class MainActivity : AppCompatActivity(), GenericListOnItemClickListener<PostEnt
         postsViewModel.getAllPosts().observe(this, Observer<PagedList<PostEntity>> { list ->
             adapter.setList(list)
         })
-
-        fab.setOnClickListener { _ ->
-            val createPostIntent = Intent(this@MainActivity, CreatePostActivity::class.java)
-            startActivity(createPostIntent)
-        }
     }
 
     override fun itemSelected(position: Int, item: PostEntity?) {

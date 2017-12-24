@@ -21,7 +21,7 @@ class ServiceClientImplementation : ServiceClientDefinition {
         IntRange(100, 110).forEach {
             comments.add(Comment(
                     id = postId + it.toLong(),
-                    body = "Default body ${randomGenerator.nextInt(100)}",
+                    body = "Default comment body ${randomGenerator.nextInt(100)}",
                     postId = postId,
                     userId = 1))
         }
@@ -43,7 +43,7 @@ class ServiceClientImplementation : ServiceClientDefinition {
                     title = "Default title ${randomGenerator.nextInt(100)}",
                     commentCount = 0,
                     userId = 1,
-                    description = "default Description ${randomGenerator.nextInt(100)}"))
+                    description = "Default description ${randomGenerator.nextInt(100)}"))
         }
 
         return posts.toTypedArray()

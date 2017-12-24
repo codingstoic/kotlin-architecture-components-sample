@@ -3,5 +3,6 @@
     <string name="action_settings">Settings</string>
     <string name="activity_single_post_comments_header_text">Comments</string>
     <string name="activity_single_post_not_found_message">Requested post does not exist</string>
-    <string name="defaultListRowText">TextView</string>
+    <string name="defaultListRowText">Default title 100</string>
+    <string name="activity_single_post_default_title">Default title</string>
 </resources>
