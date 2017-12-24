@@ -1,7 +1,5 @@
 package com.coffeeanddistractions.androidarchitecturecomponentskotlin.ui.interfaces
 
-import com.coffeeanddistractions.androidarchitecturecomponentskotlin.database.PostEntity
-
 /*
  * Created by Abdu on 12/24/2017.
  */
