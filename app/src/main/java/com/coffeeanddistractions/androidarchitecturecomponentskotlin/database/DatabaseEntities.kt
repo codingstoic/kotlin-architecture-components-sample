@@ -7,6 +7,7 @@ import android.arch.persistence.room.PrimaryKey
  * Created by Abdu on 12/20/2017.
  */
 
+
 @Entity(tableName = "users")
 data class UserEntity (
     @PrimaryKey(autoGenerate = true)

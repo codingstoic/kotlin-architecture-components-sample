@@ -21,4 +21,7 @@ interface PostDaoContract {
 
     @Query("select * from posts")
     fun queryAllPosts() : DataSource.Factory<Int, PostEntity>
+
+    @Query("select * from posts where id = :arg0 LIMIT 1")
+    fun getPost(id: Long) : LiveData<PostEntity>
 }

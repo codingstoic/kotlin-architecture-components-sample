@@ -1,4 +1,4 @@
-package com.coffeeanddistractions.androidarchitecturecomponentskotlin.ui.viewModels
+package com.coffeeanddistractions.androidarchitecturecomponentskotlin.ui.postList
 
 import android.app.Application
 import android.arch.lifecycle.AndroidViewModel

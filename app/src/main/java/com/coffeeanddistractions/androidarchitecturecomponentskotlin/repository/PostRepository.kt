@@ -33,4 +33,6 @@ class PostRepository(val serviceClientImplementation: ServiceClientDefinition,
 
         return LivePagedListBuilder(postDaoContract.queryAllPosts(), 20).build()
     }
+
+    fun getPostById(id: Long): LiveData<PostEntity> = postDaoContract.getPost(id)
 }

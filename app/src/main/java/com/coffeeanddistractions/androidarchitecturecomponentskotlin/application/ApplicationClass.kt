@@ -2,6 +2,7 @@ package com.coffeeanddistractions.androidarchitecturecomponentskotlin.applicatio
 
 import android.app.Application
 import com.coffeeanddistractions.androidarchitecturecomponentskotlin.database.ApplicationDatabase
+import com.coffeeanddistractions.androidarchitecturecomponentskotlin.repository.CommentRepository
 import com.coffeeanddistractions.androidarchitecturecomponentskotlin.repository.PostRepository
 import com.coffeeanddistractions.androidarchitecturecomponentskotlin.repository.UserRepository
 import com.coffeeanddistractions.androidarchitecturecomponentskotlin.services.ServiceClientDefinition
@@ -15,6 +16,7 @@ class ApplicationClass : Application() {
     lateinit private var serviceClientImplementationInstance: ServiceClientDefinition
     lateinit private var userRepositoryInstance: UserRepository
     lateinit private var postRepositoryInstance: PostRepository
+    lateinit private var commentRepositoryInstance: CommentRepository
     lateinit private var applicationDatabase : ApplicationDatabase
 
     override fun onCreate() {
@@ -24,6 +26,7 @@ class ApplicationClass : Application() {
         applicationDatabase = ApplicationDatabase.getDBFromContext(this)
         userRepositoryInstance = UserRepository(serviceClientImplementationInstance, applicationDatabase.userDao())
         postRepositoryInstance = PostRepository(serviceClientImplementationInstance, applicationDatabase.postDao())
+        commentRepositoryInstance = CommentRepository(serviceClientImplementationInstance, applicationDatabase.commentDao())
     }
 
     fun getServiceImplementation(): ServiceClientDefinition = serviceClientImplementationInstance
@@ -31,4 +34,5 @@ class ApplicationClass : Application() {
     // todo add interfaces for this so this can be replaced
     fun getUserRepository(): UserRepository = userRepositoryInstance
     fun getPostRepository(): PostRepository = postRepositoryInstance
+    fun getCommentRepository(): CommentRepository = commentRepositoryInstance
 }
